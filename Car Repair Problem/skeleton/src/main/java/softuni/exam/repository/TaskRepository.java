@@ -1,0 +1,21 @@
+package softuni.exam.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+import softuni.exam.models.dto.ExportTasksDTO;
+import softuni.exam.models.entity.CarType;
+import softuni.exam.models.entity.Mechanic;
+import softuni.exam.models.entity.Task;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface TaskRepository extends JpaRepository<Task, Long> {
+    
+    Optional<Task> findByMechanic(Mechanic mechanic);
+
+    Optional<List<Task>> findAllByCar_CarTypeOrderByPriceDesc(CarType carType);
+}
